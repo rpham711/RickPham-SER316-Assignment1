@@ -81,4 +81,41 @@ public class GameEngineTest {
         engine.makeGuess(-1);
         assertEquals(0, engine.getAttempts());
     }
+
+    @Test
+    public void testMaxAttemptsReached() {
+        engine.setTarget(50);
+        for (int i = 0; i < 10; i++) {
+            engine.makeGuess(1);
+        }
+        assertTrue(engine.isGameOver());
+        assertFalse(engine.isGameWon());
+    }
+
+    @Test
+    public void testWinBeforeMaxAttempts() {
+        engine.setTarget(50);
+        for (int i = 0; i < 5; i++) {
+            engine.makeGuess(1);
+        }
+        GuessResult result = engine.makeGuess(50);
+        assertTrue(result.isCorrect());
+        assertTrue(engine.isGameWon());
+        assertFalse(engine.isGameOver());
+    }
+
+    @Test
+    public void testMaxAttemptsConstant() {
+        assertEquals(10, engine.getMaxAttempts());
+    }
+
+    @Test
+    public void testResetClearsGameOver() {
+        engine.setTarget(50);
+        for (int i = 0; i < 10; i++) {
+            engine.makeGuess(1);
+        }
+        engine.reset();
+        assertFalse(engine.isGameOver());
+    }
 }
