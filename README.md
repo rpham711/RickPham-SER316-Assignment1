@@ -44,3 +44,5 @@ When you would use each strategy in real projects:
     Rebase: should use only on private feature branch. This is to make a linear history
     Squash: should use to clean up smaller commits into a larger and meaningful commit. This helps the history to look cleaner and easy to follow
     Cherry-pick: use for hotfixes
+
+For Task3 PR
